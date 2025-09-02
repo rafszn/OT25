@@ -53,6 +53,7 @@ const Footer = () => {
               <OTText title="Unwind" bg="white_orange" />
             </span>
             <span className="flex items-center gap-4">
+              <div className="w-6 h-6 bg-[#FF7F00] rounded-full" />
               <OTText title="Connect" bg="white_orange" />
               <div className="w-6 h-6 bg-[#FF7F00] rounded-full" />
               <OTText title="Learn" bg="white_orange" />
