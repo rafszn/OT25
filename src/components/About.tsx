@@ -18,7 +18,14 @@ const About = () => {
           of technology in Owerri and beyond.
         </p>
 
-        <OTButton title="Join Community" bg="purple" lg />
+        <OTButton
+          title="Join Community"
+          bg="purple"
+          lg
+          handleClick={() => {
+            window.location.href = "/sponsors";
+          }}
+        />
       </div>
 
       {/* image gallery */}
@@ -32,10 +39,10 @@ const About = () => {
         <OTText title="Highlights of our last Hangout" bg="purple" />
       </div>
 
-      <div className="border h-[623px] mt-4">
+      <div className="sm:h-[623px] mt-4">
         <video
-          className="w-full h-full rounded-lg shadow-lg"
-          src="/path-to-your-video.mp4"
+          className="sm:w-full  h-full rounded-lg shadow-lg"
+          src="/ot.mov"
           controls
           autoPlay={false}
           loop={false}

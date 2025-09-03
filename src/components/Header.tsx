@@ -8,8 +8,21 @@ const Home = () => {
     <main className="p-8 sm:p-0 relative h-full sm:mt-30 mt-10 flex flex-col items-center justify-center">
       <img src="/otbanner.svg" alt="" />
       <div className="mt-10 sm:flex flex flex-col sm:flex-row items-center gap-4">
-        <OTButton title="Get Tickets" lg />
-        <OTButton title="Sponsor The Event" bg="orange" lg />
+        <OTButton
+          title="Get Tickets"
+          lg
+          handleClick={() => {
+            window.location.href = "/tickets";
+          }}
+        />
+        <OTButton
+          title="Sponsor The Event"
+          bg="orange"
+          lg
+          handleClick={() => {
+            window.location.href = "/sponsors";
+          }}
+        />
       </div>
 
       <div className="mt-20 flex items-center justify-center w-full h-[90px] border-t border-white/15">
@@ -126,7 +139,12 @@ const Header = () => {
       <Container>
         <header className="border-b border-white/15 h-[90px] flex items-center justify-between px-8">
           {/* logo */}
-          <div>
+          <div
+            className="cursor-pointer"
+            onClick={() => {
+              window.location.href = "/";
+            }}
+          >
             <img src="/ot.svg" alt="" className="h-[40px]" />
           </div>
 
@@ -139,7 +157,12 @@ const Header = () => {
 
           {/* access */}
           <div className="hidden sm:block">
-            <OTButton title="Get Access" />
+            <OTButton
+              title="Get Access"
+              handleClick={() => {
+                window.location.href = "/tickets";
+              }}
+            />
           </div>
         </header>
 

@@ -18,6 +18,9 @@ const WhatToExpect = () => {
             imgSrc="/akon.svg"
             title="Networking Opportunities"
             paragraph="Meet and connect with fellow techies, creatives, Web3 enthusiasts, and students. Build meaningful relationships that could shape your career or startup journey."
+            handleClick={() => {
+              window.location.href = "/tickets";
+            }}
           />
         </div>
         <div className="flex-shrink-0">
@@ -26,6 +29,9 @@ const WhatToExpect = () => {
             title="Games & Fun Activities"
             paragraph="Unwind with exciting games and interactive sessions designed to help you relax, laugh, and bond with new friends."
             imgSrc="/bruno.svg"
+            handleClick={() => {
+              window.location.href = "/tickets";
+            }}
           />
         </div>
 
@@ -34,6 +40,9 @@ const WhatToExpect = () => {
             imgSrc="/akon.svg"
             title="Collaboration & Community"
             paragraph="Find potential collaborators for your projects, startups, or learning journeys. This is a chance to grow together and push Owerri’s tech scene forward."
+            handleClick={() => {
+              window.location.href = "/tickets";
+            }}
           />
         </div>
       </div>
@@ -42,8 +51,18 @@ const WhatToExpect = () => {
         <OTText title="Sponsors  & Partners" bg="purple" />
       </div>
 
+      <div className="my-20 w-full flex items-center justify-center">
+        <img src="/sponsor.svg" alt="" className="w-[80%] sm:w-full" />
+      </div>
+
       <div className="text-center mt-10">
-        <OTButton title="Collaborate with Us" bg="purple" />
+        <OTButton
+          title="Collaborate with Us"
+          bg="purple"
+          handleClick={() => {
+            window.location.href = "/sponsors";
+          }}
+        />
       </div>
     </div>
   );

@@ -17,6 +17,9 @@ const GreatMovement = () => {
             paragraph="Be part of the movement driving tech growth in Owerri. As a partner, you’ll gain visibility, connect with a vibrant audience of tech enthusiasts, and show your support for innovation in the community. From sponsorships to collaborations, your brand can make a real impact."
             lg
             buttonText="Get Involved"
+            handleClick={() => {
+              window.location.href = "/sponsors";
+            }}
           />
         </div>
 
@@ -28,6 +31,9 @@ const GreatMovement = () => {
             imgSrc="/bruno.svg"
             lg
             buttonText="Book your exhibition space"
+            handleClick={() => {
+              window.location.href = "/sponsors";
+            }}
           />
         </div>
       </div>
@@ -54,7 +60,13 @@ const GreatMovement = () => {
             stress of the grind and have fun!.
           </p>
 
-          <OTButton title="Buy Tickets" bg="orange" />
+          <OTButton
+            title="Buy Tickets"
+            bg="orange"
+            handleClick={() => {
+              window.location.href = "/tickets";
+            }}
+          />
         </div>
       </div>
 
@@ -84,7 +96,13 @@ const GreatMovement = () => {
             stress of the grind and have fun!.
           </p>
 
-          <OTButton title="Buy Tickets" bg="purple_white" />
+          <OTButton
+            title="Buy Tickets"
+            bg="purple_white"
+            handleClick={() => {
+              window.location.href = "/tickets";
+            }}
+          />
         </div>
       </div>
 

@@ -5,6 +5,7 @@ import { Route } from "react-router-dom";
 import type { AppRoute } from "../types/t";
 import DefaultLayout from "../layouts/DefaultLayout";
 import Sponsor from "../pages/Sponsor";
+import Checkout from "../pages/Checkout";
 
 export const routes: AppRoute[] = [
   {
@@ -22,6 +23,10 @@ export const routes: AppRoute[] = [
       {
         path: "sponsors",
         element: Sponsor,
+      },
+      {
+        path: "checkout",
+        element: Checkout,
       },
     ],
   },

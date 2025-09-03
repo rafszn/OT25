@@ -26,7 +26,12 @@ const Footer = () => {
           </div>
 
           <div className="flex-1/2 flex flex-col sm:items-end items-start mt-12 sm:mt-0 sm:justify-end">
-            <OTButton title="Get Access" />
+            <OTButton
+              title="Get Access"
+              handleClick={() => {
+                window.location.href = "/tickets";
+              }}
+            />
             <div className="text-white/80 text-[20px] flex items-center justify-center gap-4 sm:mt-16 mt-4">
               <Link to={"/"}>Home</Link>
               <Link to={"/tickets"}>Tickets</Link>

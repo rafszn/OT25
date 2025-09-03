@@ -7,6 +7,7 @@ const OTCard = ({
   paragraph,
   lg,
   buttonText = "Get Tickets",
+  handleClick,
 }: {
   bg?: "orange" | "purple";
   imgSrc: string;
@@ -14,6 +15,7 @@ const OTCard = ({
   paragraph: string;
   lg?: boolean;
   buttonText?: string;
+  handleClick?: () => void;
 }) => {
   const dimensions =
     lg === true
@@ -52,7 +54,7 @@ const OTCard = ({
       <p className={`${paragraphSize} text-white/70 mt-2`}>{paragraph}</p>
 
       <div className="absolute bottom-6">
-        <OTButton title={buttonText} bg={buttonBg} />
+        <OTButton title={buttonText} bg={buttonBg} handleClick={handleClick} />
       </div>
     </div>
   );

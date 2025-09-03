@@ -11,7 +11,12 @@ interface ChildrenProps {
   handleClick?: () => void;
 }
 
-const OTButton = ({ title, bg = "white", lg = false }: ChildrenProps) => {
+const OTButton = ({
+  title,
+  bg = "white",
+  lg = false,
+  handleClick,
+}: ChildrenProps) => {
   const style: styleProps =
     bg === "white"
       ? {
@@ -43,6 +48,7 @@ const OTButton = ({ title, bg = "white", lg = false }: ChildrenProps) => {
   return (
     <button
       className={`h-[50px] ${width} px-8 rounded-xl ${style?.bgColor} ${style?.textColor} ${style?.outlineColor} cursor-pointer sm:text-[20px] text-[16px] font-semibold`}
+      onClick={handleClick}
     >
       {title}
     </button>
