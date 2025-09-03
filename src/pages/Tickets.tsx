@@ -80,8 +80,6 @@ const TicketModal: React.FC<ModalProps> = ({
         payload
       );
 
-      console.log(res.data);
-      console.log("Payment payload:", payload);
       onClose();
       setLoading(false);
       window.location.href = res.data?.authorization_url;
@@ -278,7 +276,7 @@ const Tickets = () => {
             </div>
             <button
               className={`sm:hidden h-[50px] w-full mt-2  px-8 rounded-xl bg-[#6A0DAD] text-white shadow-[-4px_4px_1px_#ffffff] cursor-pointer sm:text-[20px] text-[16px] font-semibold`}
-              onClick={() => openModal(TICKETS.premium)}
+              onClick={() => openModal(TICKETS.basic)}
             >
               Get Tickets
             </button>
