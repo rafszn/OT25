@@ -38,7 +38,7 @@ body {
 
 .animate-marquee {
   display: flex;
-  animation: marquee 25s ease-in-out infinite alternate;
+  animation: marquee 15s ease-in-out infinite alternate;
 }
 
 .custom-dash {
@@ -49,6 +49,18 @@ body {
       #ffffff 20px,
       transparent 20px,
       transparent 30px /* gap length */
+    )
+    1;
+}
+
+.custom-dash-mobile {
+  border-style: dashed;
+  border-image: repeating-linear-gradient(
+      to right,
+      #ffffff 0,
+      #ffffff 20px,
+      transparent 20px,
+      transparent 20px /* gap length */
     )
     1;
 }

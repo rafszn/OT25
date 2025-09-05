@@ -6,7 +6,7 @@ import type { JSX } from "react";
 const Home = () => {
   return (
     <main className="p-8 sm:p-0 relative h-full sm:mt-30 mt-10 flex flex-col items-center justify-center">
-      <img src="/otbanner.svg" alt="" />
+      <img src="/otbanner.webp" alt="" />
       <div className="mt-10 sm:flex flex flex-col sm:flex-row items-center gap-4">
         <OTButton
           title="Get Tickets"
@@ -20,7 +20,7 @@ const Home = () => {
           bg="orange"
           lg
           handleClick={() => {
-            window.location.href = "/sponsors";
+            window.location.href = "/sponsor";
           }}
         />
       </div>
@@ -125,13 +125,13 @@ const Header = () => {
   const view: Record<string, JSX.Element> = {
     "/": <Home />,
     "/tickets": <Ticket />,
-    "/sponsors": <Sponsor />,
+    "/sponsor": <Sponsor />,
   };
   return (
     <section
       className="bg-[#6A0DAD]"
       style={{
-        backgroundImage: "url('/bg.png')",
+        backgroundImage: "url('/bg.webp')",
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
@@ -145,14 +145,14 @@ const Header = () => {
               window.location.href = "/";
             }}
           >
-            <img src="/ot.svg" alt="" className="h-[40px]" />
+            <img src="/ot.webp" alt="" className="h-[40px]" />
           </div>
 
           {/* nav */}
           <div className="flex text-white/80 sm:text-[20px] items-center justify-center gap-4">
             <Link to={"/"}>Home</Link>
             <Link to={"/tickets"}>Tickets</Link>
-            <Link to={"/sponsors"}>Sponsors</Link>
+            <Link to={"/sponsor"}>Sponsor</Link>
           </div>
 
           {/* access */}

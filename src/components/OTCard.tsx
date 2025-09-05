@@ -19,10 +19,11 @@ const OTCard = ({
 }) => {
   const dimensions =
     lg === true
-      ? "sm:w-[608.12px] w-[390px] sm:h-[950px] h-[650px]"
-      : "h-[581px] w-[397px]";
+      ? "sm:w-full w-[340px] sm:h-[950px] h-[650px]"
+      : // ? "sm:w-[608.12px] w-[390px] sm:h-[950px] h-[650px]"
+        "h-[581px]  sm:w-[380px] w-[340px]";
   const textSize = lg
-    ? "sm:text-[61px] text-[40px] sm:leading-[66px] font-semibold mt-[-1rem] sm:mt-8"
+    ? "sm:text-[61px] text-[40px] leading-[48px] sm:leading-[66px] font-semibold sm:mt-8"
     : "text-[40px] leading-[45px] mt-8";
   const paragraphSize = lg ? "sm:text-[25px]" : "text-[16px]";
   const background =
@@ -38,7 +39,7 @@ const OTCard = ({
       <div className="h-[40%]">
         <img
           src={imgSrc ?? "/akon.svg"}
-          className="object-cover w-full"
+          className="object-cover w-full h-full"
           alt=""
         />
       </div>

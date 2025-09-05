@@ -23,7 +23,7 @@ const About = () => {
           bg="purple"
           lg
           handleClick={() => {
-            window.location.href = "/sponsors";
+            window.location.href = "https://forms.gle/LVDrm1eL5YZHnWZT7";
           }}
         />
       </div>
@@ -31,8 +31,8 @@ const About = () => {
       {/* image gallery */}
 
       <div className="mb-20 flex items-center justify-center select-none">
-        <img src="/image.png" alt="" className="hidden sm:block" />
-        <img src="/ab-mobile.svg" className="sm:hidden w-full" alt="" />
+        <img src="/image.webp" alt="" className="hidden sm:block" />
+        <img src="/ab-mobile.webp" className="sm:hidden w-full" alt="" />
       </div>
 
       <div className="text-center">
@@ -42,7 +42,7 @@ const About = () => {
       <div className="sm:h-[623px] mt-4">
         <video
           className="sm:w-full  h-full rounded-lg shadow-lg"
-          src="/ot.mov"
+          src="/ot.mp4"
           controls
           autoPlay={false}
           loop={false}

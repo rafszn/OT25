@@ -12,13 +12,13 @@ const GreatMovement = () => {
       <div className="sm:flex flex items-center gap-6 sm:gap-8 overflow-x-auto sm:overflow-x-visible scrollbar-hide snap-x snap-mandatory p-4 sm:p-0">
         <div className="flex-shrink-0 sm:flex-shrink">
           <OTCard
-            imgSrc="/akon.svg"
+            imgSrc="/akon.webp"
             title="Partner & Build With Us"
             paragraph="Be part of the movement driving tech growth in Owerri. As a partner, you’ll gain visibility, connect with a vibrant audience of tech enthusiasts, and show your support for innovation in the community. From sponsorships to collaborations, your brand can make a real impact."
             lg
             buttonText="Get Involved"
             handleClick={() => {
-              window.location.href = "/sponsors";
+              window.location.href = "/sponsor";
             }}
           />
         </div>
@@ -28,11 +28,11 @@ const GreatMovement = () => {
             bg="purple"
             title="Exhibit Your Product"
             paragraph="Showcase what you’re building! Whether it’s a product, service, or startup idea, the Owerri Techies Hangout is the perfect stage to put it in front of a curious and engaged audience. Connect directly with potential customers, users, and collaborators."
-            imgSrc="/bruno.svg"
+            imgSrc="/bruno.webp"
             lg
             buttonText="Book your exhibition space"
             handleClick={() => {
-              window.location.href = "/sponsors";
+              window.location.href = "/sponsor";
             }}
           />
         </div>
@@ -40,7 +40,7 @@ const GreatMovement = () => {
 
       <div className="mx-4 sm:mx-0 sm:h-[594px] h-[695px] p-8 mt-20 rounded-2xl bg-[#6A0DAD] shadow-[-7px_7px_1px_#FF7F00] sm:flex  items-center justify-center gap-2">
         <div className="flex-1/2 flex items-center justify-center">
-          <img src="/oth.svg" alt="" className="sm:w-[80%]" />
+          <img src="/oth.webp" alt="" className="sm:w-[80%]" />
         </div>
 
         <div className="flex-1/2">
@@ -73,7 +73,7 @@ const GreatMovement = () => {
       <div className="sm:hidden mx-4 sm:mx-0 sm:h-[594px] h-[695px] p-8 mt-20 rounded-2xl bg-[#FF7F00] shadow-[-7px_7px_1px_#6A0DAD] block  items-center justify-center gap-2">
         <div className="flex-1/2 flex items-center justify-center">
           <img
-            src="/yb.svg"
+            src="/yb.webp"
             alt=""
             className="sm:w-[80%] shadow-[7px_7px_1px_#6A0DAD] rounded-2xl"
           />
@@ -109,7 +109,7 @@ const GreatMovement = () => {
       <div className="hidden h-[594px] p-8 mt-20 rounded-2xl bg-[#FF7F00] shadow-[-7px_7px_1px_#6A0DAD] sm:flex flex-row-reverse items-center justify-center gap-2">
         <div className="flex-1/2 flex items-center justify-center">
           <img
-            src="/yb.svg"
+            src="/yb.webp"
             alt=""
             className="w-[80%] shadow-[7px_7px_1px_#6A0DAD] rounded-2xl"
           />
@@ -123,7 +123,13 @@ const GreatMovement = () => {
             2025 has a variety of opportunities for you to get involved with!
           </p>
 
-          <OTButton title="Join the Volunteer Team" bg="purple_white" />
+          <OTButton
+            title="Join the Volunteer Team"
+            bg="purple_white"
+            handleClick={() =>
+              (window.location.href = "https://forms.gle/5ToVjQRxfwuUcKhD9")
+            }
+          />
         </div>
       </div>
     </div>

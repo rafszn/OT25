@@ -15,8 +15,8 @@ interface TicketInfo {
 }
 
 const TICKETS: Record<TicketType, TicketInfo> = {
-  basic: { type: "basic", title: "OTH25 Basic", price: 5000 },
-  premium: { type: "premium", title: "OTH25 Premium", price: 15000 },
+  basic: { type: "basic", title: "OTH25 Basic", price: 2000 },
+  premium: { type: "premium", title: "OTH25 Premium", price: 10000 },
 };
 
 interface ModalProps {
@@ -201,12 +201,12 @@ const Tickets = () => {
     <div className="my-10 mb-12">
       <div className="sm:flex p-4 sm:p-0 items-center gap-8">
         <div
-          className={`relative sm:w-[608.12px] sm:h-[892px] h-[637px] my-10 p-6  rounded-2xl bg-[#FF7F00] shadow-[-7px_7px_1px_#6A0DAD]`}
+          className={`relative sm:w-[608.12px] sm:h-[892px] h-[637px] my-10 sm:p-6 p-4  rounded-2xl bg-[#FF7F00] shadow-[-7px_7px_1px_#6A0DAD]`}
         >
           {/* image */}
           <div className="h-[40%] flex items-center justify-center">
             <img
-              src={"/othticket.svg"}
+              src={"/othticket.webp"}
               className="object-cover w-full"
               alt=""
             />
@@ -221,7 +221,7 @@ const Tickets = () => {
 
           {/* paragraph */}
           <p
-            className={`sm:text-[25px] text-[18px] text-white/70 mt-4 flex items-center gap-2`}
+            className={`sm:text-[25px] text-[18px] text-white/80 mt-4 flex items-center gap-2`}
           >
             <FaCheck /> Full access to the Event
           </p>
@@ -234,62 +234,69 @@ const Tickets = () => {
           <p
             className={`sm:text-[25px] text-[18px] text-white/70 mt-2 flex  gap-2`}
           >
-            <FaCheck className="mt-[0.5rem]" /> Event starter pack (badge,
-            program guide)
+            <FaCheck className="mt-[0.5rem]" /> Event starter pack (badge, etc)
           </p>
 
-          <div className="absolute left-0 w-full border-b border-dashed custom-dash mt-6 border-b-white/70">
+          <div className="absolute left-0 sm:bottom-[10rem] bottom-[7rem] w-full border-b border-dashed custom-dash mt-6 border-b-white/70">
             <div className="relative">
               <div className="sm:h-10 sm:w-10 h-6 w-6 bg-white rounded-full absolute sm:top-[-20px] top-[-10px] left-[-1rem] sm:left-[-1.5rem]" />
 
               <div className="sm:h-10 h-6 w-6 sm:w-10  bg-white rounded-full absolute sm:right-[-1.2rem] right-[-1rem] top-[-10px] sm:top-[-20px]" />
             </div>
           </div>
-          <div className="absolute bottom-6 left-0 w-full px-6">
-            <div className="flex items-center justify-between">
-              <div className="price sm:text-[40px] text-[30px] font-[ClashDisplay] font-semibold text-white/80">
-                ₦{TICKETS.basic.price.toLocaleString()}
+
+          <div className="absolute bottom-6 left-0 w-full sm:px-6 px-4">
+            <div className="flex items justify-between">
+              <div className="price sm:text-[40px] sm:leading-[40px] text-[30px] font-[ClashDisplay] font-semibold text-white/80 self-end flex">
+                <div className="self-end mb-[-12px]">
+                  <p className="line-through sm:text-[24px] sm:leading-[27px] text-[15px] leading-[12px]">
+                    ₦5,000
+                  </p>
+                  <p className="">₦{TICKETS.basic.price.toLocaleString()}</p>
+                </div>
               </div>
 
-              <div className="border border-white/80 rounded-xl h-[38px] w-[104px] flex items-center justify-between p-2">
+              <div className="border border-white/80 rounded-lg sm:h-[38px] sm:w-[104px] w-[75px] flex items-center justify-between sm:p-2 p-[2px] px-1 self-end mr-[2px] sm:mr-0">
                 <p
-                  className="w-[18px] h-[18px] rounded bg-white/20 flex items-center justify-center cursor-pointer"
+                  className="sm:w-[18px] sm:h-[18px] w-[14px] h-[14px] rounded bg-white/20 flex items-center justify-center cursor-pointer"
                   onClick={() => updateQuantity("basic", -1)}
                 >
                   -
                 </p>
-                <p className="text-lg text-white">{quantities.basic}</p>
+                <p className="sm:text-lg text-[14px] text-white">
+                  {quantities.basic}
+                </p>
                 <p
-                  className="w-[18px] h-[18px] bg-white/80 rounded flex items-center justify-center cursor-pointer"
+                  className="sm:w-[18px] sm:h-[18px] w-[14px] h-[14px] bg-white/80 rounded flex items-center justify-center cursor-pointer"
                   onClick={() => updateQuantity("basic", +1)}
                 >
                   +
                 </p>
               </div>
-              <div className="hidden sm:block">
+              <div className="hidden sm:block self-end">
                 <OTButton
                   title="Get Tickets"
                   bg="purple_white"
                   handleClick={() => openModal(TICKETS.basic)}
                 />
               </div>
+              <button
+                className={`sm:hidden h-[39px] self-end w-[120px] mt-2  px-4 rounded-lg bg-[#6A0DAD]  text-white shadow-[-4px_4px_1px_#ffffff] cursor-pointer sm:text-[20px] text-[12px] font-semibold`}
+                onClick={() => openModal(TICKETS.basic)}
+              >
+                Get Tickets
+              </button>
             </div>
-            <button
-              className={`sm:hidden h-[50px] w-full mt-2  px-8 rounded-xl bg-[#6A0DAD] text-white shadow-[-4px_4px_1px_#ffffff] cursor-pointer sm:text-[20px] text-[16px] font-semibold`}
-              onClick={() => openModal(TICKETS.basic)}
-            >
-              Get Tickets
-            </button>
           </div>
         </div>
 
         <div
-          className={`relative sm:w-[608.12px] sm:h-[892px] h-[750px] my-10 p-6  rounded-2xl bg-[#6A0DAD] shadow-[-7px_7px_1px_#FF7F00]`}
+          className={`relative sm:w-[608.12px] sm:h-[892px] h-[750px] my-10 sm:p-6 px-4  rounded-2xl bg-[#6A0DAD] shadow-[-7px_7px_1px_#FF7F00]`}
         >
           {/* image */}
           <div className="h-[40%] flex items-center justify-center">
             <img
-              src={"/othticket.svg"}
+              src={"/othticket.webp"}
               className="object-cover w-full"
               alt=""
             />
@@ -304,9 +311,9 @@ const Tickets = () => {
 
           {/* paragraph */}
           <p
-            className={`sm:text-[25px] text-[18px] text-white/70 mt-4 flex items-center gap-2`}
+            className={`sm:text-[25px] text-[18px] text-white/80 mt-4 flex items-center gap-2`}
           >
-            ✨Everything in Basic, plus:
+            Everything in Basic, plus:
           </p>
           <p
             className={`sm:text-[25px] text-[18px] text-white/70 mt-2 flex gap-2`}
@@ -323,11 +330,11 @@ const Tickets = () => {
           <p
             className={`sm:text-[25px] text-[18px] text-white/70 mt-2 flex  gap-2`}
           >
-            <FaCheck className="mt-[0.5rem]" /> Premium event swag (t-shirt,
-            notebook, branded items)
+            <FaCheck className="mt-[0.5rem]" /> Premium event swag (T-shirt,
+            Notebook, Branded items)
           </p>
 
-          <div className="absolute left-0 w-full border-b border-dashed custom-dash mt-6 border-b-white/70">
+          <div className="absolute left-0 sm:bottom-[10rem] bottom-[7rem] w-full border-b border-dashed custom-dash mt-6 border-b-white/70">
             <div className="relative">
               <div className="sm:h-10 sm:w-10 h-6 w-6 bg-white rounded-full absolute sm:top-[-20px] top-[-10px] left-[-1rem] sm:left-[-1.5rem]" />
 
@@ -335,41 +342,48 @@ const Tickets = () => {
             </div>
           </div>
 
-          <div className="absolute bottom-6 left-0 w-full px-6">
+          <div className="absolute bottom-6 left-0 w-full sm:px-6 px-4">
             <div className="flex items-center justify-between">
-              <div className="price sm:text-[40px] text-[30px] font-[ClashDisplay] font-semibold text-white/80">
-                ₦{TICKETS.premium.price.toLocaleString()}
+              <div className="price sm:text-[40px] sm:leading-[40px] text-[30px] font-[ClashDisplay] font-semibold text-white/80 self-end flex">
+                <div className="self-end mb-[-12px]">
+                  <p className="line-through sm:text-[24px] text-[15px] leading-[12px] sm:leading-[27px]">
+                    ₦15,000
+                  </p>
+                  <p className="">₦{TICKETS.premium.price.toLocaleString()}</p>
+                </div>
               </div>
 
-              <div className="border border-white/80 rounded-xl h-[38px] w-[104px] flex items-center justify-between p-2">
+              <div className="border border-white/80 rounded-lg sm:h-[38px] sm:w-[104px] w-[75px] flex items-center justify-between sm:p-2 p-[2px] px-1 self-end mr-[2px] sm:mr-0">
                 <p
-                  className="w-[18px] h-[18px] rounded bg-white/20 flex items-center justify-center cursor-pointer"
+                  className="sm:w-[18px] sm:h-[18px] w-[14px] h-[14px] rounded bg-white/20 flex items-center justify-center cursor-pointer"
                   onClick={() => updateQuantity("premium", -1)}
                 >
                   -
                 </p>
-                <p className="text-lg text-white">{quantities.premium}</p>
+                <p className="sm:text-lg text-[14px] text-white">
+                  {quantities.premium}
+                </p>
                 <p
-                  className="w-[18px] h-[18px] bg-white/80 rounded flex items-center justify-center cursor-pointer select-none"
+                  className="sm:w-[18px] sm:h-[18px] w-[14px] h-[14px] bg-white/80 rounded flex items-center justify-center cursor-pointer"
                   onClick={() => updateQuantity("premium", +1)}
                 >
                   +
                 </p>
               </div>
-              <div className="hidden sm:block">
+              <div className="hidden sm:block self-end">
                 <OTButton
                   title="Get Tickets"
                   bg="orange"
                   handleClick={() => openModal(TICKETS.premium)}
                 />
               </div>
+              <button
+                className={`sm:hidden h-[39px] self-end w-[120px] mt-2  px-4 rounded-lg bg-[#FF7F00] text-white shadow-[-4px_4px_1px_#ffffff] cursor-pointer sm:text-[20px] text-[12px] font-semibold`}
+                onClick={() => openModal(TICKETS.premium)}
+              >
+                Get Tickets
+              </button>
             </div>
-            <button
-              className={`sm:hidden h-[50px] w-full mt-2  px-8 rounded-xl bg-[#FF7F00] text-white shadow-[-4px_4px_1px_#ffffff] cursor-pointer sm:text-[20px] text-[16px] font-semibold`}
-              onClick={() => openModal(TICKETS.premium)}
-            >
-              Get Tickets
-            </button>
           </div>
         </div>
       </div>
