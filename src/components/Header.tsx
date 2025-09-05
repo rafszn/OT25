@@ -1,7 +1,10 @@
 import { Link, useLocation } from "react-router-dom";
+import { RxHamburgerMenu } from "react-icons/rx";
 import Container from "./Container";
 import OTButton from "./OTButton";
-import type { JSX } from "react";
+import { useState, type JSX } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import useDeviceType from "../lib/hooks/useGetDeviceType";
 
 const Home = () => {
   return (
@@ -121,7 +124,8 @@ const Sponsor = () => {
 
 const Header = () => {
   const { pathname } = useLocation();
-  console.log(pathname);
+  const [isOpen, setIsOpen] = useState(false);
+  const { isDesktop } = useDeviceType();
   const view: Record<string, JSX.Element> = {
     "/": <Home />,
     "/ticket": <Ticket />,
@@ -149,11 +153,49 @@ const Header = () => {
           </div>
 
           {/* nav */}
-          <div className="flex text-white/80 sm:text-[20px] items-center justify-center gap-4">
+          <div className="hidden sm:flex text-white/80 sm:text-[20px] items-center justify-center gap-4">
             <Link to={"/"}>Home</Link>
             <Link to={"/ticket"}>Tickets</Link>
             <Link to={"/sponsor"}>Sponsor</Link>
           </div>
+
+          <div
+            className="sm:hidden h-10 flex items-center justify-center w-12 bg-white rounded-lg shadow-[4px_4px_1px_#FF7F00] cursor-pointer"
+            onClick={() => setIsOpen((prev) => !prev)}
+          >
+            <RxHamburgerMenu size={20} color="#6A0DAD" />
+          </div>
+
+          <AnimatePresence>
+            {!isDesktop && isOpen && (
+              <motion.div
+                initial={{ y: "-100%", opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                exit={{ y: "-100%", opacity: 0 }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
+                className="absolute top-[5.5rem] left-0 right-0 bg-white shadow-md p-4 flex flex-col space-y-3 z-40 font-[ClashDisplay]"
+              >
+                <a
+                  href="/"
+                  className="text-[#6A0DAD] font-medium hover:underline"
+                >
+                  Home
+                </a>
+                <a
+                  href="/ticket"
+                  className="text-[#6A0DAD] font-medium hover:underline"
+                >
+                  Tickets
+                </a>
+                <a
+                  href="/sponsor"
+                  className="text-[#6A0DAD] font-medium hover:underline"
+                >
+                  Sponsor
+                </a>
+              </motion.div>
+            )}
+          </AnimatePresence>
 
           {/* access */}
           <div className="hidden sm:block">
