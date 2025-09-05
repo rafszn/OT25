@@ -13,7 +13,7 @@ const OTText = ({
       : "text-white text-glow-orange";
   return (
     <h1
-      className={`px-4 sm:px-0 sm:text-[60px] text-[40px] font-[ClashDisplay] font-bold ${style} sm:leading-[70px] leading-[45px] sm:mb-4`}
+      className={`sm:px-0 sm:text-[60px] text-[40px] font-[ClashDisplay] font-bold ${style} sm:leading-[70px] leading-[45px] sm:mb-4`}
     >
       {title}
     </h1>
