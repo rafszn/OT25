@@ -19,7 +19,7 @@ const OTCard = ({
 }) => {
   const dimensions =
     lg === true
-      ? "sm:w-full w-[340px] sm:h-[950px] h-[650px]"
+      ? "sm:w-full w-[360px] sm:h-[950px] h-[670px]"
       : // ? "sm:w-[608.12px] w-[390px] sm:h-[950px] h-[650px]"
         "h-[581px]  sm:w-[380px] w-[340px]";
   const textSize = lg

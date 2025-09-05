@@ -81,7 +81,7 @@ const GreatMovement = () => {
 
         <div className="flex-1/2">
           <div className="my-4 sm:my-0">
-            <OTText title="Upcoming Events" bg="white_orange" />
+            <OTText title="Volunteer With Us" bg="white_purple" />
           </div>
           <p className="sm:text-[24px] text-[16px] text-white/90 font-semibold mt-[-1rem]">
             Owerri Techies Hangout 2025
@@ -91,16 +91,16 @@ const GreatMovement = () => {
           </p>
 
           <p className="sm:text-[24px] text-[16px] text-white/70 sm:mt-8 mt-4 mb-4">
-            The No.1 hangout for Tech experts, Web3 folks, creatives, and
-            students in Owerri! This event is designed for us to Unwind from the
-            stress of the grind and have fun!.
+            If you are passionate about promoting this event, enthusiastic about
+            events or enjoy working on fun events, then Owerri Techies hangout
+            2025 has a variety of opportunities for you to get involved with!
           </p>
 
           <OTButton
-            title="Buy Tickets"
+            title="Join the Volunteer Team"
             bg="purple_white"
             handleClick={() => {
-              window.location.href = "/tickets";
+              window.location.href = "https://forms.gle/5ToVjQRxfwuUcKhD9";
             }}
           />
         </div>
