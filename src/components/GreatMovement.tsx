@@ -64,7 +64,7 @@ const GreatMovement = () => {
             title="Buy Tickets"
             bg="orange"
             handleClick={() => {
-              window.location.href = "/tickets";
+              window.location.href = "/ticket";
             }}
           />
         </div>

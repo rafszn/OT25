@@ -12,7 +12,7 @@ const Home = () => {
           title="Get Tickets"
           lg
           handleClick={() => {
-            window.location.href = "/tickets";
+            window.location.href = "/ticket";
           }}
         />
         <OTButton
@@ -124,7 +124,7 @@ const Header = () => {
   console.log(pathname);
   const view: Record<string, JSX.Element> = {
     "/": <Home />,
-    "/tickets": <Ticket />,
+    "/ticket": <Ticket />,
     "/sponsor": <Sponsor />,
   };
   return (
@@ -151,7 +151,7 @@ const Header = () => {
           {/* nav */}
           <div className="flex text-white/80 sm:text-[20px] items-center justify-center gap-4">
             <Link to={"/"}>Home</Link>
-            <Link to={"/tickets"}>Tickets</Link>
+            <Link to={"/ticket"}>Tickets</Link>
             <Link to={"/sponsor"}>Sponsor</Link>
           </div>
 
@@ -160,7 +160,7 @@ const Header = () => {
             <OTButton
               title="Get Access"
               handleClick={() => {
-                window.location.href = "/tickets";
+                window.location.href = "/ticket";
               }}
             />
           </div>

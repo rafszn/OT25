@@ -29,12 +29,12 @@ const Footer = () => {
             <OTButton
               title="Get Access"
               handleClick={() => {
-                window.location.href = "/tickets";
+                window.location.href = "/ticket";
               }}
             />
             <div className="text-white/80 text-[20px] flex items-center justify-center gap-4 sm:mt-16 mt-4">
               <Link to={"/"}>Home</Link>
-              <Link to={"/tickets"}>Tickets</Link>
+              <Link to={"/ticket"}>Tickets</Link>
               <Link to={"/sponsor"}>Sponsor</Link>
             </div>
           </div>

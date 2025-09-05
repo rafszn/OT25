@@ -19,7 +19,7 @@ const WhatToExpect = () => {
             title="Networking Opportunities"
             paragraph="Meet and connect with fellow techies, creatives, Web3 enthusiasts, and students. Build meaningful relationships that could shape your career or startup journey."
             handleClick={() => {
-              window.location.href = "/tickets";
+              window.location.href = "/ticket";
             }}
           />
         </div>
@@ -30,7 +30,7 @@ const WhatToExpect = () => {
             paragraph="Unwind with exciting games and interactive sessions designed to help you relax, laugh, and bond with new friends."
             imgSrc="/bruno.webp"
             handleClick={() => {
-              window.location.href = "/tickets";
+              window.location.href = "/ticket";
             }}
           />
         </div>
@@ -41,7 +41,7 @@ const WhatToExpect = () => {
             title="Collaboration & Community"
             paragraph="Find potential collaborators for your projects, startups, or learning journeys. This is a chance to grow together and push Owerri’s tech scene forward."
             handleClick={() => {
-              window.location.href = "/tickets";
+              window.location.href = "/ticket";
             }}
           />
         </div>
@@ -52,8 +52,16 @@ const WhatToExpect = () => {
       </div>
 
       <div className="my-20 w-full flex items-center justify-center">
-        <img src="/sponsor.webp" alt="" className="w-[80%] sm:w-full hidden sm:block" />
-        <img src="/brand-mob.webp" alt="" className="w-[80%] sm:w-full sm:hidden block" />
+        <img
+          src="/sponsor.webp"
+          alt=""
+          className="w-[80%] sm:w-full hidden sm:block"
+        />
+        <img
+          src="/brand-mob.webp"
+          alt=""
+          className="w-[80%] sm:w-full sm:hidden block"
+        />
       </div>
 
       <div className="text-center mt-10">

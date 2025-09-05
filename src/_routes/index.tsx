@@ -17,7 +17,7 @@ export const routes: AppRoute[] = [
         element: Home,
       },
       {
-        path: "tickets",
+        path: "ticket",
         element: Tickets,
       },
       {
