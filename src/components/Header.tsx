@@ -122,6 +122,34 @@ const Sponsor = () => {
   );
 };
 
+const Exhibitor = () => {
+  return (
+    <div>
+      <div className="text-center sm:mt-20 mt-10 p-4 sm:p-0">
+        <h1
+          className={`sm:text-[70px] text-[40px] font-[ClashDisplay] font-bold text-white text-glow-orange sm:leading-[70px] mb-4`}
+        >
+          Become an Exhibitor
+        </h1>
+
+        <h1
+          className={`sm:text-[30px] text-[20px] font-[ClashDisplay] font-bold text-white text-glow-orange sm:leading-[70px] mt-[-1.5rem] mb-4`}
+        >
+          Have a service/product you want share with the community? Book a
+          stand!
+        </h1>
+
+        <p className="sm:text-[24px] text-[16px] sm:leading-[36px] mb-20 text-white/80">
+          Exhibit at Owerri Techies and showcase your products to a vibrant
+          community of developers, designers, and innovators. Connect with
+          rising talent, growing businesses, and tech lovers shaping Owerri’s
+          future.
+        </p>
+      </div>
+    </div>
+  );
+};
+
 const Header = () => {
   const { pathname } = useLocation();
   const [isOpen, setIsOpen] = useState(false);
@@ -130,6 +158,7 @@ const Header = () => {
     "/": <Home />,
     "/ticket": <Ticket />,
     "/sponsor": <Sponsor />,
+    "/exhibitor": <Exhibitor />,
   };
   return (
     <section
@@ -157,6 +186,7 @@ const Header = () => {
             <Link to={"/"}>Home</Link>
             <Link to={"/ticket"}>Tickets</Link>
             <Link to={"/sponsor"}>Sponsor</Link>
+            <Link to={"/exhibitor"}>Exhibitor</Link>
           </div>
 
           <div
@@ -192,6 +222,12 @@ const Header = () => {
                   className="text-[#6A0DAD] font-medium hover:underline"
                 >
                   Sponsor
+                </a>
+                <a
+                  href="/exhibitor"
+                  className="text-[#6A0DAD] font-medium hover:underline"
+                >
+                  Exhibitor
                 </a>
               </motion.div>
             )}

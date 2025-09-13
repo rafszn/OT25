@@ -6,6 +6,7 @@ import type { AppRoute } from "../types/t";
 import DefaultLayout from "../layouts/DefaultLayout";
 import Sponsor from "../pages/Sponsor";
 import Checkout from "../pages/Checkout";
+import Exhibitor from "../pages/Exhibitor";
 
 export const routes: AppRoute[] = [
   {
@@ -23,6 +24,10 @@ export const routes: AppRoute[] = [
       {
         path: "sponsor",
         element: Sponsor,
+      },
+      {
+        path: "exhibitor",
+        element: Exhibitor,
       },
       {
         path: "checkout",

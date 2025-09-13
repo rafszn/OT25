@@ -3,11 +3,12 @@ import OTInput from "../components/OTInput";
 import axios from "axios";
 import { toast } from "sonner";
 
-const Sponsor = () => {
+const Exhibitor = () => {
   const [formData, setFormData] = useState({
     lastName: "",
     firstName: "",
-    companyName: "",
+    businessName: "",
+    businessDesc: "",
     email: "",
     phoneNumber: "",
     additionalInfo: "",
@@ -60,7 +61,8 @@ const Sponsor = () => {
       setFormData({
         lastName: "",
         firstName: "",
-        companyName: "",
+        businessName: "",
+        businessDesc: "",
         email: "",
         phoneNumber: "",
         additionalInfo: "",
@@ -106,19 +108,19 @@ const Sponsor = () => {
         </div>
 
         <OTInput
-          label="Company Name"
-          placeholder="Enter company name"
+          label="Business Name"
+          placeholder="Enter business name"
           type="text"
-          name="companyName"
-          value={formData.companyName}
+          name="businessName"
+          value={formData.businessName}
           onChange={handleChange}
         />
         <OTInput
-          name="email"
-          value={formData.email}
-          label="Email Address"
-          placeholder="Enter email"
+          label="Business Description"
+          placeholder="Describe your business (eg. i sell books)"
           type="text"
+          name="businessDesc"
+          value={formData.businessDesc}
           onChange={handleChange}
         />
         <OTInput
@@ -129,6 +131,15 @@ const Sponsor = () => {
           value={formData.phoneNumber}
           onChange={handleChange}
         />
+        <OTInput
+          name="email"
+          value={formData.email}
+          label="Email Address"
+          placeholder="Enter email"
+          type="text"
+          onChange={handleChange}
+        />
+
         <OTInput
           name="additionalInfo"
           label="Additional Information"
@@ -148,4 +159,4 @@ const Sponsor = () => {
     </div>
   );
 };
-export default Sponsor;
+export default Exhibitor;
