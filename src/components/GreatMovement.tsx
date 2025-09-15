@@ -32,7 +32,7 @@ const GreatMovement = () => {
             lg
             buttonText="Book your exhibition space"
             handleClick={() => {
-              window.location.href = "/sponsor";
+              window.location.href = "/exhibitor";
             }}
           />
         </div>
