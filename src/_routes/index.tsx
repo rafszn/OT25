@@ -7,6 +7,7 @@ import DefaultLayout from "../layouts/DefaultLayout";
 import Sponsor from "../pages/Sponsor";
 import Checkout from "../pages/Checkout";
 import Exhibitor from "../pages/Exhibitor";
+import AdminDashboard from "../pages/Dashboard";
 
 export const routes: AppRoute[] = [
   {
@@ -33,7 +34,15 @@ export const routes: AppRoute[] = [
         path: "checkout",
         element: Checkout,
       },
+      {
+        path: "dashboard",
+        element: AdminDashboard,
+      },
     ],
+  },
+  {
+    path: "/admin/v1/dashboard",
+    element: AdminDashboard,
   },
 ];
 

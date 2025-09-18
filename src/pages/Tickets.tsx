@@ -34,6 +34,7 @@ const TicketModal: React.FC<ModalProps> = ({
 }) => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
+  const [referralCode, setReferralCode] = useState("");
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -70,12 +71,14 @@ const TicketModal: React.FC<ModalProps> = ({
       ticketType: ticket.type,
       price: ticket.price,
       quantity,
+      referralCode,
       total,
     };
 
     try {
       setLoading(true);
       const res = await axios.post(
+        // "http://localhost:8080/v1/checkout",
         "https://ot-server-juqv.onrender.com/v1/checkout",
         payload
       );
@@ -132,6 +135,14 @@ const TicketModal: React.FC<ModalProps> = ({
             type="text"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+          />
+
+          <OTInput
+            // label="Valid Email"
+            placeholder="Referral code (optional)"
+            type="text"
+            value={referralCode}
+            onChange={(e) => setReferralCode(e.target.value)}
           />
 
           <div className="mt-8 space-y-2">
