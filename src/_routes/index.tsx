@@ -34,10 +34,6 @@ export const routes: AppRoute[] = [
         path: "checkout",
         element: Checkout,
       },
-      {
-        path: "dashboard",
-        element: AdminDashboard,
-      },
     ],
   },
   {
