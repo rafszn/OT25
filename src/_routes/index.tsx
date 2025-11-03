@@ -8,8 +8,8 @@ import Sponsor from "../pages/Sponsor";
 import Checkout from "../pages/Checkout";
 import Exhibitor from "../pages/Exhibitor";
 import AdminDashboard from "../pages/Dashboard";
-import Shop from "../pages/Shop";
-import ProductDetails from "../pages/ProductDetails";
+// import Shop from "../pages/Shop";
+// import ProductDetails from "../pages/ProductDetails";
 import SignIn from "../pages/SignIn";
 import ProtectedRoute from "../contexts/ProtectedRoute";
 import ShopDashboard from "../pages/ShopDashboard";
@@ -40,14 +40,14 @@ export const routes: AppRoute[] = [
         path: "checkout",
         element: Checkout,
       },
-      {
-        path: "shop",
-        element: Shop,
-      },
-      {
-        path: "shop/:id",
-        element: ProductDetails,
-      },
+      // {
+      //   path: "shop",
+      //   element: Shop,
+      // },
+      // {
+      //   path: "shop/:id",
+      //   element: ProductDetails,
+      // },
     ],
   },
   {
