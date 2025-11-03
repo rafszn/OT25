@@ -7,8 +7,8 @@ import OTButton from "../components/OTButton";
 
 const verify = async (reference: string) => {
   const res = await axios.get(
-    // `https://ot-server-juqv.onrender.com/v1/checkout/callback?reference=${reference}`
-    `http://localhost:8080/v1/checkout/callback?reference=${reference}`
+    `https://ot-server-juqv.onrender.com/v1/checkout/callback?reference=${reference}`
+    // `http://localhost:8080/v1/checkout/callback?reference=${reference}`
   );
   return res.data;
 };

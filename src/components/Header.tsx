@@ -52,13 +52,6 @@ const Home = () => {
             </div>
           </div>
         </div>
-
-        {/* <div className="flex items-center justify-center gap-4">
-              <p className="text-[30px] text-white/80 font-bold">
-                SAVE THE DATE: 28TH NOVEMBER, 2025{" "}
-              </p>
-              <div className="w-[3px] h-[30px] bg-[#FF7F00]" />
-            </div> */}
       </div>
     </main>
   );
@@ -150,6 +143,26 @@ const Exhibitor = () => {
   );
 };
 
+const Shop = () => {
+  return (
+    <div>
+      <div className="text-center sm:mt-20 mt-10 p-4 sm:mb-20 sm:p-0">
+        <h1
+          className={`sm:text-[70px] text-[40px] font-[ClashDisplay] font-bold text-white text-glow-orange leading-[70px] mb-6`}
+        >
+          Shop
+        </h1>
+
+        <h1
+          className={`sm:text-[30px] text-[20px] font-[ClashDisplay] font-bold text-white text-glow-orange sm:leading-[35px] mt-[-1.5rem] mb-4`}
+        >
+          Shop Owerri Techies Hangout Merch
+        </h1>
+      </div>
+    </div>
+  );
+};
+
 const Header = () => {
   const { pathname } = useLocation();
   const [isOpen, setIsOpen] = useState(false);
@@ -159,7 +172,15 @@ const Header = () => {
     "/ticket": <Ticket />,
     "/sponsor": <Sponsor />,
     "/exhibitor": <Exhibitor />,
+    "/shop": <Shop />,
   };
+
+  const content = pathname.startsWith("/shop") ? (
+    <Shop />
+  ) : (
+    view[pathname] ?? <Home />
+  );
+  
   return (
     <section
       className="bg-[#6A0DAD]"
@@ -186,7 +207,7 @@ const Header = () => {
             <Link to={"/"}>Home</Link>
             <Link to={"/ticket"}>Tickets</Link>
             <Link to={"/sponsor"}>Sponsor</Link>
-            <Link to={"/exhibitor"}>Exhibitor</Link>
+            <Link to={"/shop"}>Shop</Link>
           </div>
 
           <div
@@ -245,7 +266,7 @@ const Header = () => {
         </header>
 
         {/* changable banner */}
-        {view[pathname]}
+        {content}
       </Container>
     </section>
   );

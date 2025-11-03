@@ -10,12 +10,24 @@ body {
   font-family: "Montserrat", sans-serif;
 }
 
+.shop_dashboard {
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+}
+
 .text-glow-orange {
   text-shadow: 3px 3px 1px #ff7f00;
 }
 
 .text-glow-purple {
   text-shadow: 3px 3px 1px #6a0dad;
+}
+
+.text-glow-orange-purple {
+  color: #6a0dad;
+  text-shadow: 3px 3px 1px #ff7f00;
 }
 
 .scrollbar-hide::-webkit-scrollbar {
@@ -63,4 +75,53 @@ body {
       transparent 20px /* gap length */
     )
     1;
+}
+
+.red-switch-container {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.red-switch-input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.red-switch-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 34px;
+}
+
+.red-switch-slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+.red-switch-slider.on {
+  background-color: #6a0dad;
+}
+
+.red-switch-slider.on:before {
+  transform: translateX(26px);
+}
+
+.red-switch-input:focus + .red-switch-slider {
+  box-shadow: 0 0 1px #6a0dad;
 }
