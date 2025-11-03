@@ -172,7 +172,7 @@ const Header = () => {
     "/ticket": <Ticket />,
     "/sponsor": <Sponsor />,
     "/exhibitor": <Exhibitor />,
-    "/shop": <Shop />,
+    // "/shop": <Shop />,
   };
 
   const content = pathname.startsWith("/shop") ? (
