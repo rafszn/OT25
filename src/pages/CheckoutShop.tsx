@@ -12,7 +12,7 @@ const verify = async (reference: string) => {
   );
   return res.data;
 };
-const Checkout = () => {
+const CheckoutShop = () => {
   const [searchParams] = useSearchParams();
   const reference = searchParams.get("reference");
   const [loading, setLoading] = useState(true);
@@ -88,7 +88,7 @@ const Checkout = () => {
                 🎉 Payment Success!
               </h1>
               <p className="text-[12px] sm:text-base text-gray-500 mt-2">
-                Your will recieve an email with your ticket(s).
+                Your will recieve an email with your order details.
               </p>
               <div className="mt-4">
                 <OTButton
@@ -115,4 +115,4 @@ const Checkout = () => {
     </div>
   );
 };
-export default Checkout;
+export default CheckoutShop;

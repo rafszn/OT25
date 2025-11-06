@@ -1,4 +1,5 @@
 import Container from "../components/Container";
+import OrdersDashboard from "./OrdersSection";
 import ProductsDashboard from "./ProductSection";
 
 const ShopDashboard = () => {
@@ -9,6 +10,8 @@ const ShopDashboard = () => {
           SHOP
         </h1>
         <ProductsDashboard />
+
+        <OrdersDashboard />
       </div>
     </Container>
   );

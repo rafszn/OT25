@@ -172,7 +172,7 @@ const Header = () => {
     "/ticket": <Ticket />,
     "/sponsor": <Sponsor />,
     "/exhibitor": <Exhibitor />,
-    // "/shop": <Shop />,
+    "/shop": <Shop />,
   };
 
   const content = pathname.startsWith("/shop") ? (
@@ -207,7 +207,7 @@ const Header = () => {
             <Link to={"/"}>Home</Link>
             <Link to={"/ticket"}>Tickets</Link>
             <Link to={"/sponsor"}>Sponsor</Link>
-            {/* <Link to={"/shop"}>Shop</Link> */}
+            <Link to={"/shop"}>Shop</Link>
           </div>
 
           <div

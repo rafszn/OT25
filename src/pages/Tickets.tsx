@@ -78,8 +78,8 @@ const TicketModal: React.FC<ModalProps> = ({
     try {
       setLoading(true);
       const res = await axios.post(
-        // "http://localhost:8080/v1/checkout",
-        "https://ot-server-juqv.onrender.com/v1/checkout",
+        "http://localhost:8080/v1/checkout",
+        // "https://ot-server-juqv.onrender.com/v1/checkout",
         payload
       );
 

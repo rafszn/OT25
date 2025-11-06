@@ -10,6 +10,9 @@ export interface Product {
   description: string;
   quantity: number;
   category: string;
+  delivery: {
+    fee: number;
+  };
   variants: { type: string; values: string[] }[];
   images: { url: string }[];
 }
@@ -23,7 +26,7 @@ export default function ProductsDashboard() {
   }
 
   return (
-    <div className="sm:p-6 p-4 bg-white min-h-screen">
+    <div className="sm:p-6 p-4 bg-white ">
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-2xl font-bold text-[#6A0DAD]">Products</h1>
         <button
@@ -49,7 +52,7 @@ export default function ProductsDashboard() {
             products?.map((product: Product) => (
               <tr key={product._id} className="border-b whitespace-nowrap">
                 <td className="p-3">{product.name}</td>
-                <td className="p-3">{product.price}</td>
+                <td className="p-3">₦{product.price.toLocaleString()}</td>
                 <td className="p-3">{product.quantity}</td>
                 <td className="p-3">{product.category}</td>
               </tr>

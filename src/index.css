@@ -16,6 +16,12 @@ body {
   font-weight: 500;
   font-style: normal;
 }
+.order_dashboard {
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+}
 
 .text-glow-orange {
   text-shadow: 3px 3px 1px #ff7f00;

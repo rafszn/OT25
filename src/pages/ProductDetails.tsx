@@ -3,6 +3,10 @@ import Container from "../components/Container";
 import { useGetSingleProduct } from "../_services/product.service";
 import { useState } from "react";
 import type { Product } from "./ProductSection";
+import { toast } from "sonner";
+import { AnimatePresence, motion } from "framer-motion";
+import OTInput from "../components/OTInput";
+import { useCheckoutShop } from "../_services/checkout.service";
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -11,24 +15,24 @@ const ProductDetails = () => {
     isLoading: boolean;
   };
 
+  const [payLoad, setPayLoad] = useState<{
+    productId: string;
+    quantity: number;
+    selectedVariants: Record<string, string>;
+    deliveryFee: number;
+    price: number;
+  } | null>(null);
+
   const { name, description, images, price } = product ?? {};
   const productId = product?._id;
 
-  const [isOn, setIsOn] = useState(true);
   const [number, setNumber] = useState(0);
   const [quantity, setQuantity] = useState(0);
   const [selectedVariants, setSelectedVariants] = useState<
     Record<string, string>
   >({});
 
-  // const { mutateAsync: AddToCart, isPending } = useAddToCart();
-
-  const handleToggle = () => {
-    const newValue = !isOn;
-    setIsOn(newValue);
-  };
-
-  const imageUrl = product?.images[number]?.url || "/shirt.png";
+  const imageUrl = product?.images?.[number]?.url || "/shirt.png";
   const totalQuantity = product?.quantity;
 
   const increaseQuantity = () => {
@@ -44,34 +48,30 @@ const ProductDetails = () => {
   };
 
   async function handleAddToCart() {
+    if (quantity === 0) {
+      toast.error("Please select at least one item to proceed.");
+      return;
+    }
+
     const payload = {
       productId: productId,
       quantity,
-      pickup: isOn,
+      price: price,
+      deliveryFee: product?.delivery?.fee || 0,
       selectedVariants: selectedVariants ?? {},
     };
 
-    console.log(payload);
-    try {
-      // await AddToCart({
-      //   productId: product?._id,
-      //   quantity,
-      //   pickup: isOn,
-      //   selectedVariants: selectedVariants ?? {},
-      // });
-    } catch {
-      return;
-    }
+    setPayLoad(payload);
   }
 
   const handleVariantSelect = (type: string, value: string) => {
     setSelectedVariants((prev) => ({
       ...prev,
-      [type.toLowerCase()]: value.toLowerCase(),
+      [type?.toLowerCase()]: value.toLowerCase(),
     }));
   };
 
-  if (isLoading) {
+  if (isLoading && !product) {
     return <>Loading...</>;
   }
   return (
@@ -81,22 +81,24 @@ const ProductDetails = () => {
           {/* images */}
           <div className="flex-1/2 flex sm:flex-row flex-col-reverse   gap-2 sm:h-[529px] h-[483px]">
             <div className="flex-[0.3] flex items-center sm:flex-col flex-row gap-2 gap-y-[0.9rem]">
-              {images
-                .slice(0, 3)
-                .map((image: { url: string }, index: number) => (
-                  <img
-                    key={index}
-                    src={image.url}
-                    alt={`Product image ${index + 1}`}
-                    title={number === index ? "in view" : ""}
-                    className={
-                      number === index
-                        ? "active border-3 border-red-700 cursor-pointer sm:h-[167px] h-[111px] sm:w-[167px] w-[111px] object-cover rounded-lg"
-                        : "cursor-pointer sm:h-[167px] h-[111px] sm:w-[167px] w-[111px] object-cover rounded-lg"
-                    }
-                    onClick={() => setNumber(index)}
-                  />
-                ))}
+              {images &&
+                images.length > 0 &&
+                images
+                  .slice(0, 3)
+                  .map((image: { url: string }, index: number) => (
+                    <img
+                      key={index}
+                      src={image.url}
+                      alt={`Product image ${index + 1}`}
+                      title={number === index ? "in view" : ""}
+                      className={
+                        number === index
+                          ? "active border-3 border-red-700 cursor-pointer sm:h-[167px] h-[111px] sm:w-[167px] w-[111px] object-cover rounded-lg"
+                          : "cursor-pointer sm:h-[167px] h-[111px] sm:w-[167px] w-[111px] object-cover rounded-lg"
+                      }
+                      onClick={() => setNumber(index)}
+                    />
+                  ))}
             </div>
 
             <div className="flex-[0.7]">
@@ -116,7 +118,7 @@ const ProductDetails = () => {
               </h1>
 
               <p className="sm:text-[32px] text-[20px] font-bold sm:mt-6 mt-3">
-                ₦{price.toLocaleString()}
+                ₦{price?.toLocaleString()}
               </p>
               <p className="text-[16px] mt-2 font-light">{description}</p>
 
@@ -202,26 +204,6 @@ const ProductDetails = () => {
                 </p>
               )}
 
-              {totalQuantity > 0 && (
-                <div className="switch sm:mt-8 mt-6 flex items-center sm:gap-3 gap-[0.3rem]">
-                  <label className="red-switch-container">
-                    <input
-                      type="checkbox"
-                      checked={isOn}
-                      onChange={handleToggle}
-                      className="red-switch-input"
-                    />
-                    <span
-                      className={`red-switch-slider ${isOn ? "on" : ""}`}
-                    ></span>
-                  </label>
-
-                  <p className="sm:text-[16px] text-[10px]">
-                    Pickup package at the event
-                  </p>
-                </div>
-              )}
-
               <div className="flex items-center justify-center gap-4 mt-4">
                 <div className="border border-[#6A0DAD] rounded-lg sm:h-[38px] h-[37px] sm:w-[104px] w-[100px] flex items-center justify-between sm:p-2 p-[2px] px-1 self-end mr-[2px] sm:mr-0">
                   <p
@@ -256,27 +238,254 @@ const ProductDetails = () => {
           You might also like
         </h1>
       </div>
+
+      <AnimatePresence mode="wait">
+        {payLoad && (
+          <CheckoutModal
+            isOpen={!!payLoad}
+            onClose={() => setPayLoad(null)}
+            payload={payLoad}
+          />
+        )}
+      </AnimatePresence>
     </Container>
   );
 };
 export default ProductDetails;
 
-{
-  /* <div className="flex flex-wrap">
-                <p className="sm:h-[44px] h-[41px] flex items-center px-6  rounded-[5rem] m-2 text-[14px] cursor-pointer  bg-black text-white">
-                  Small
-                </p>
-                <p className="sm:h-[44px] h-[41px] flex items-center px-6 bg-[#F0F0F0] rounded-[5rem] m-2 text-[14px] cursor-pointer">
-                  Medium
-                </p>{" "}
-                <p className="sm:h-[44px] h-[41px] flex items-center px-6 bg-[#F0F0F0] rounded-[5rem] m-2 text-[14px] cursor-pointer">
-                  Large
-                </p>{" "}
-                <p className="sm:h-[44px] h-[41px] flex items-center px-6 bg-[#F0F0F0] rounded-[5rem] m-2 text-[14px] cursor-pointer">
-                  X-Large
-                </p>{" "}
-                <p className="sm:h-[44px] h-[41px] flex items-center px-6 bg-[#F0F0F0] rounded-[5rem] m-2 text-[14px] cursor-pointer">
-                  XX-Large
-                </p>
-              </div> */
+interface ModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  payload: {
+    productId: string;
+    price: number;
+    quantity: number;
+    selectedVariants: Record<string, string>;
+    deliveryFee: number;
+  };
 }
+
+const CheckoutModal: React.FC<ModalProps> = ({ isOpen, onClose, payload }) => {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [address, setAddress] = useState("");
+  const [phone, setPhone] = useState("");
+  const [state, setState] = useState("");
+  const [city, setCity] = useState("");
+  const [pickupOnEventDay, setPickupOnEventDay] = useState(false);
+
+  const { mutateAsync: checkoutShop, isPending: loading } = useCheckoutShop();
+
+  if (!isOpen) return null;
+
+  const subTotal = payload.price * payload.quantity;
+  const total = pickupOnEventDay ? subTotal : subTotal + payload.deliveryFee;
+
+  const handleToggle = () => {
+    const newValue = !pickupOnEventDay;
+    setPickupOnEventDay(newValue);
+  };
+
+  const handlePay = async () => {
+    if (
+      !address.trim() ||
+      !phone.trim() ||
+      !state.trim() ||
+      !city.trim() ||
+      !firstName.trim() ||
+      !lastName.trim()
+    ) {
+      toast.error("Please fill in all required fields.");
+      return;
+    }
+    if (!email.trim()) {
+      toast.error("Please enter your email address.");
+      return;
+    }
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      toast.error("Please enter a valid email address.");
+      return;
+    }
+
+    const data = {
+      firstName,
+      lastName,
+      email,
+      address,
+      phone,
+      state,
+      city,
+      pickupOnEventDay,
+      product: {
+        productId: payload.productId,
+        quantity: payload.quantity,
+        selectedVariants: payload.selectedVariants,
+      },
+    };
+
+    await checkoutShop(data);
+  };
+
+  return (
+    <motion.div
+      className="fixed inset-0 flex items-center justify-center bg-black/20 backdrop-blur-[0.3rem] z-50"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
+      <motion.div
+        className="bg-white rounded-xl p-6 w-[90%] h-[70vh] overflow-scroll max-w-[800px] shadow-lg"
+        initial={{ scale: 0.9, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        exit={{ scale: 0.9, opacity: 0 }}
+        transition={{ duration: 0.2 }}
+        style={{
+          backgroundImage: "url('/left.png')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
+        <h2 className="text-[30px] font-bold mb-4 font-[ClashDisplay]">
+          Checkout Information
+        </h2>
+
+        <div className="p-4  rounded-2xl bg-[#F9F9F9]">
+          <h2 className="text-[24px] font-mediuma font-[ClashDisplay]">
+            Delivery Information
+          </h2>
+          <form className="space-y-3">
+            <div className="grid grid-cols-2 gap-4">
+              <OTInput
+                label="First Name"
+                placeholder="First Name"
+                value={firstName}
+                type="text"
+                onChange={(e) => setFirstName(e.target.value)}
+              />
+              <OTInput
+                label="Last Name"
+                placeholder="Last Name"
+                type="text"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+              />
+            </div>
+            <OTInput
+              label="Valid Email"
+              placeholder="A valid email address"
+              type="text"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+
+            <OTInput
+              label="Contact Address"
+              placeholder="Enter address"
+              type="text"
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
+            />
+
+            <OTInput
+              label="Phone Number"
+              placeholder="Enter phone number"
+              type="text"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+            />
+
+            <div className="grid grid-cols-2 gap-4">
+              <OTInput
+                label="State of Residence"
+                placeholder="Enter State"
+                type="text"
+                value={state}
+                onChange={(e) => setState(e.target.value)}
+              />
+              <OTInput
+                label="City"
+                placeholder="Enter city"
+                type="text"
+                value={city}
+                onChange={(e) => setCity(e.target.value)}
+              />
+            </div>
+
+            <div className="switch sm:mt-8 mt-6 flex items-center sm:gap-3 gap-[0.3rem]">
+              <label className="red-switch-container">
+                <input
+                  type="checkbox"
+                  checked={pickupOnEventDay}
+                  onChange={handleToggle}
+                  className="red-switch-input"
+                />
+                <span
+                  className={`red-switch-slider ${
+                    pickupOnEventDay ? "on" : ""
+                  }`}
+                ></span>
+              </label>
+
+              {pickupOnEventDay ? (
+                <p className="sm:text-[16px] text-[10px]">
+                  Merchandise delivered to you on day of event
+                </p>
+              ) : (
+                <p className="sm:text-[16px] text-[10px]">
+                  Merchandise delivered to you{" "}
+                  <span className="italic">(one week after purchase)</span>
+                </p>
+              )}
+            </div>
+
+            <p className="text-[#FF8D28] text-[14px] italic mt-4">
+              All purchases made after 21st Nov, will be received on the day of
+              the event!
+            </p>
+
+            <div className="mt-14">
+              <h1 className="font-[ClashDisplay] text-[24px]">Order Summary</h1>
+
+              <div className="flex items-center justify-between my-2">
+                <p>Subtotal</p>
+                <p className="font-bold">₦{subTotal.toLocaleString()}</p>
+              </div>
+
+              <div className="flex items-center justify-between my-2">
+                <p>Delivery</p>
+                <p className="font-bold">
+                  ₦{pickupOnEventDay ? 0 : payload.deliveryFee?.toLocaleString()}
+                </p>
+              </div>
+
+              <div className="flex items-center justify-between my-8">
+                <p className="font-bold">Total</p>
+                <p className="font-bold">₦{total.toLocaleString()}</p>
+              </div>
+            </div>
+
+            <div className="flex justify-end gap-2 mt-4">
+              <button
+                type="button"
+                onClick={onClose}
+                className="px-4 py-2 bg-gray-300 rounded cursor-pointer"
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                onClick={handlePay}
+                className="px-4 py-2 bg-[#6A0DAD] text-white rounded cursor-pointer shadow-[4px_4px_1px_#FF7F00]"
+              >
+                {loading ? "Processing..." : "Proceed to Payment"}
+              </button>
+            </div>
+            <i className="text-[10px]">secured by paystack</i>
+          </form>
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+};

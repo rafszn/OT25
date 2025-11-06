@@ -35,7 +35,7 @@ export const useGetProducts = () => {
 
 export const useGetSingleProduct = (id: string) => {
   return useQuery({
-    queryKey: ["products"],
+    queryKey: ["products", id],
     queryFn: async () => {
       const res = await instance.get(`/products/${id}`);
       return res.data.data;
