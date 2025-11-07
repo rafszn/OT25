@@ -4,11 +4,11 @@ import OTText from "./OTText";
 const LearnConnect = () => {
   return (
     <div className="mt-20 mb-20">
-      <div className="text-center">
+      <div className="text-center px-4">
         <OTText title="Learn. Connect. Win big!" bg="purple" />
       </div>
 
-      <p className="text-center text-[24px]">
+      <p className="text-center sm:text-[24px] text-[16px] mt-3 px-4">
         It’s all happening at Owerri Techies Hangout! Come vibe with fellow
         creatives, grab cool prizes, and unlock awesome opportunities!
       </p>

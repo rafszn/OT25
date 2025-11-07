@@ -36,6 +36,7 @@ const Footer = () => {
               <Link to={"/"}>Home</Link>
               <Link to={"/ticket"}>Tickets</Link>
               <Link to={"/sponsor"}>Sponsor</Link>
+              <Link to={"/shop"}>Shop</Link>
             </div>
           </div>
         </div>
@@ -78,7 +79,11 @@ const Footer = () => {
 
         <div className="mt-3 p-4 sm:p-0 sm:flex sm:flex-row flex flex-col sm:items-center sm:justify-between sm:gap-0 gap-4">
           <div className="flex items-center gap-2">
-            <img src="/x.webp" alt="" className="sm:hidden w-[40px] h-[40px] object-cover" />
+            <img
+              src="/x.webp"
+              alt=""
+              className="sm:hidden w-[40px] h-[40px] object-cover"
+            />
             <img
               src="/ig.webp"
               alt=""
