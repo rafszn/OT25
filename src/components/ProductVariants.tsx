@@ -12,7 +12,7 @@ const VARIANT_OPTIONS: Record<string, string[]> = {
     "Orange",
     "Grey",
   ],
-  Size: ["XS", "S", "M", "L", "XL"],
+  Size: ["Small", "Medium", "Large", "X-Large", "XX-Large"],
   Material: ["Cotton", "Linen", "Silk", "Denim"],
 };
 

@@ -163,6 +163,45 @@ const Shop = () => {
   );
 };
 
+const Giveaway = () => {
+  return (
+    <div>
+      <div className="text-center sm:mt-20 mt-10 p-4 sm:p-0">
+        <h1
+          className={`sm:text-[70px] text-[40px] font-[ClashDisplay] font-bold text-white text-glow-orange sm:leading-[70px] mb-4`}
+        >
+          Join the Gadget Giveaway!
+        </h1>
+
+        <p className="sm:text-[24px] text-[16px] sm:leading-[36px] mb-20 text-white/80">
+          Ready to power up your tech journey? Fill out this short form for a
+          chance to win a brand-new laptop at the Owerri Techies Hangout!
+        </p>
+      </div>
+    </div>
+  );
+};
+
+const Scholarship = () => {
+  return (
+    <div>
+      <div className="text-center sm:mt-20 mt-10 p-4 sm:p-0">
+        <h1
+          className={`sm:text-[70px] text-[40px] font-[ClashDisplay] font-bold text-white text-glow-orange sm:leading-[70px] mb-4`}
+        >
+          Apply for a Tech Scholarship!
+        </h1>
+
+        <p className="sm:text-[24px] text-[16px] sm:leading-[36px] mb-20 text-white/80">
+          We’re giving passionate techies a chance to learn, grow, and level up
+          with exclusive scholarships. Fill out this quick form and take your
+          next big step in tech!
+        </p>
+      </div>
+    </div>
+  );
+};
+
 const Header = () => {
   const { pathname } = useLocation();
   const [isOpen, setIsOpen] = useState(false);
@@ -173,6 +212,8 @@ const Header = () => {
     "/sponsor": <Sponsor />,
     "/exhibitor": <Exhibitor />,
     "/shop": <Shop />,
+    "/giveaway": <Giveaway />,
+    "/scholarship": <Scholarship />,
   };
 
   const content = pathname.startsWith("/shop") ? (
@@ -180,7 +221,7 @@ const Header = () => {
   ) : (
     view[pathname] ?? <Home />
   );
-  
+
   return (
     <section
       className="bg-[#6A0DAD]"
@@ -245,10 +286,10 @@ const Header = () => {
                   Sponsor
                 </a>
                 <a
-                  href="/exhibitor"
+                  href="/shop"
                   className="text-[#6A0DAD] font-medium hover:underline"
                 >
-                  Exhibitor
+                  Shop
                 </a>
               </motion.div>
             )}

@@ -16,6 +16,8 @@ import ShopDashboard from "../pages/ShopDashboard";
 import PublicRoute from "../contexts/publicRoute";
 import CheckoutShop from "../pages/CheckoutShop";
 import OrderDetails from "../pages/OrderDetails";
+import Giveaway from "../components/Giveaway";
+import Scholarship from "../components/Scholarship";
 
 export const routes: AppRoute[] = [
   {
@@ -34,6 +36,16 @@ export const routes: AppRoute[] = [
         path: "sponsor",
         element: Sponsor,
       },
+      // new
+      {
+        path: "giveaway",
+        element: Giveaway,
+      },
+      {
+        path: "scholarship",
+        element: Scholarship,
+      },
+      //
       {
         path: "exhibitor",
         element: Exhibitor,

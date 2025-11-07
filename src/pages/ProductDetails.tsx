@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import Container from "../components/Container";
 import { useGetSingleProduct } from "../_services/product.service";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { Product } from "./ProductSection";
 import { toast } from "sonner";
 import { AnimatePresence, motion } from "framer-motion";
@@ -79,8 +79,8 @@ const ProductDetails = () => {
       <div className="product_detail sm:p-0 px-4">
         <div className="sm:flex sm:gap-6 sm:my-20 my-10 items-center ">
           {/* images */}
-          <div className="flex-1/2 flex sm:flex-row flex-col-reverse   gap-2 sm:h-[529px] h-[483px]">
-            <div className="flex-[0.3] flex items-center sm:flex-col flex-row gap-2 gap-y-[0.9rem]">
+          <div className="flex-1/2 flex sm:flex-row flex-col-reverse  gap-2 sm:h-[529px] h-[483px]">
+            <div className="flex-[0.3] flex items-center sm:flex-col justify-center flex-row gap-2 gap-y-[0.9rem]">
               {images &&
                 images.length > 0 &&
                 images
@@ -93,7 +93,7 @@ const ProductDetails = () => {
                       title={number === index ? "in view" : ""}
                       className={
                         number === index
-                          ? "active border-3 border-red-700 cursor-pointer sm:h-[167px] h-[111px] sm:w-[167px] w-[111px] object-cover rounded-lg"
+                          ? "active border-2 cursor-pointer sm:h-[167px] h-[111px] sm:w-[167px] w-[111px] object-cover rounded-lg"
                           : "cursor-pointer sm:h-[167px] h-[111px] sm:w-[167px] w-[111px] object-cover rounded-lg"
                       }
                       onClick={() => setNumber(index)}
@@ -275,6 +275,16 @@ const CheckoutModal: React.FC<ModalProps> = ({ isOpen, onClose, payload }) => {
   const [city, setCity] = useState("");
   const [pickupOnEventDay, setPickupOnEventDay] = useState(false);
 
+  const CUTOFF = new Date("2025-11-21");
+  const now = new Date();
+  const isAfterCutoff = now > CUTOFF;
+
+  useEffect(() => {
+    if (isAfterCutoff) {
+      setPickupOnEventDay(true);
+    }
+  }, [isAfterCutoff]);
+
   const { mutateAsync: checkoutShop, isPending: loading } = useCheckoutShop();
 
   if (!isOpen) return null;
@@ -283,6 +293,7 @@ const CheckoutModal: React.FC<ModalProps> = ({ isOpen, onClose, payload }) => {
   const total = pickupOnEventDay ? subTotal : subTotal + payload.deliveryFee;
 
   const handleToggle = () => {
+    if (isAfterCutoff) return;
     const newValue = !pickupOnEventDay;
     setPickupOnEventDay(newValue);
   };
@@ -347,16 +358,16 @@ const CheckoutModal: React.FC<ModalProps> = ({ isOpen, onClose, payload }) => {
           backgroundPosition: "center",
         }}
       >
-        <h2 className="text-[30px] font-bold mb-4 font-[ClashDisplay]">
+        <h2 className="sm:text-[30px] text-[20px] font-bold mb-4 font-[ClashDisplay]">
           Checkout Information
         </h2>
 
         <div className="p-4  rounded-2xl bg-[#F9F9F9]">
-          <h2 className="text-[24px] font-mediuma font-[ClashDisplay]">
+          <h2 className="sm:text-[24px] text-[15px] font-mediuma font-[ClashDisplay]">
             Delivery Information
           </h2>
           <form className="space-y-3">
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid sm:grid-cols-2 sm:gap-4">
               <OTInput
                 label="First Name"
                 placeholder="First Name"
@@ -396,7 +407,7 @@ const CheckoutModal: React.FC<ModalProps> = ({ isOpen, onClose, payload }) => {
               onChange={(e) => setPhone(e.target.value)}
             />
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid sm:grid-cols-2 sm:gap-4">
               <OTInput
                 label="State of Residence"
                 placeholder="Enter State"
@@ -419,7 +430,8 @@ const CheckoutModal: React.FC<ModalProps> = ({ isOpen, onClose, payload }) => {
                   type="checkbox"
                   checked={pickupOnEventDay}
                   onChange={handleToggle}
-                  className="red-switch-input"
+                  className="red-switch-input disabled:cursor-not-allowed"
+                  disabled={isAfterCutoff}
                 />
                 <span
                   className={`red-switch-slider ${
@@ -446,7 +458,9 @@ const CheckoutModal: React.FC<ModalProps> = ({ isOpen, onClose, payload }) => {
             </p>
 
             <div className="mt-14">
-              <h1 className="font-[ClashDisplay] text-[24px]">Order Summary</h1>
+              <h1 className="font-[ClashDisplay] sm:text-[24px] text-[15px]">
+                Order Summary
+              </h1>
 
               <div className="flex items-center justify-between my-2">
                 <p>Subtotal</p>
@@ -456,7 +470,8 @@ const CheckoutModal: React.FC<ModalProps> = ({ isOpen, onClose, payload }) => {
               <div className="flex items-center justify-between my-2">
                 <p>Delivery</p>
                 <p className="font-bold">
-                  ₦{pickupOnEventDay ? 0 : payload.deliveryFee?.toLocaleString()}
+                  ₦
+                  {pickupOnEventDay ? 0 : payload.deliveryFee?.toLocaleString()}
                 </p>
               </div>
 
@@ -479,7 +494,7 @@ const CheckoutModal: React.FC<ModalProps> = ({ isOpen, onClose, payload }) => {
                 onClick={handlePay}
                 className="px-4 py-2 bg-[#6A0DAD] text-white rounded cursor-pointer shadow-[4px_4px_1px_#FF7F00]"
               >
-                {loading ? "Processing..." : "Proceed to Payment"}
+                {loading ? "Processing..." : "Proceed"}
               </button>
             </div>
             <i className="text-[10px]">secured by paystack</i>
