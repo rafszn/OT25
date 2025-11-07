@@ -231,7 +231,7 @@ const Scholarship = () => {
 
         {formData.hasTicket === "no" && (
           <p className="text-center text-red-500 font-bold italic">
-            You are not eligible for a scholarship is you dont have a ticket.
+            You are not eligible for a scholarship if you do not have a ticket.
           </p>
         )}
       </div>

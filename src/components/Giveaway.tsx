@@ -211,7 +211,7 @@ const Giveaway = () => {
 
         {formData.hasTicket === "no" && (
           <p className="text-center text-red-500 font-bold italic">
-            You are not eligible for a giveaway is you dont have a ticket.
+            You are not eligible for a giveaway if you do not have a ticket.
           </p>
         )}
       </div>
