@@ -79,6 +79,7 @@ export default function AdminDashboard() {
     async function fetchData() {
       try {
         const res = await fetch(
+          // "http://localhost:8080/v1/dashboard"
           "https://ot-server-juqv.onrender.com/v1/dashboard"
         );
         const result = await res.json();
@@ -124,6 +125,13 @@ export default function AdminDashboard() {
     );
   }
 
+  const premiumCount = data?.tickets?.filter(
+    (t) => t.ticketType === "premium"
+  ).length;
+  const basicCount = data?.tickets?.filter(
+    (t) => t.ticketType === "basic"
+  ).length;
+
   if (loading) {
     return <p className="text-center p-6 text-gray-600">Loading...</p>;
   }
@@ -143,6 +151,15 @@ export default function AdminDashboard() {
       <h1 className="text-2xl sm:text-3xl font-bold text-[#6A0DAD] mb-6 text-center sm:text-left">
         Admin Dashboard
       </h1>
+
+      <div className="flex gap-4 justify-center sm:justify-start mb-6">
+        <div className="px-4 py-2 rounded-lg bg-purple-100 text-purple-700 font-semibold">
+          Premium: {premiumCount}
+        </div>
+        <div className="px-4 py-2 rounded-lg bg-orange-100 text-orange-700 font-semibold">
+          Basic: {basicCount}
+        </div>
+      </div>
 
       {/* Tabs */}
       <div className="flex border-gray-300 mb-6 justify-center sm:justify-start">
