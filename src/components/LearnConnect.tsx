@@ -16,7 +16,7 @@ const LearnConnect = () => {
       <div className="sm:flex flex items-center gap-6 sm:gap-8 overflow-x-auto sm:overflow-x-visible scrollbar-hide snap-x snap-mandatory p-4 sm:p-0">
         <div className="flex-shrink-0 sm:flex-shrink">
           <OTCard
-            imgSrc="/akon.webp"
+            imgSrc="/laptop.png"
             title="Laptop Giveaway!"
             paragraph="Show up, have fun, and you might just leave with a brand-new laptop — because great ideas deserve great tools!"
             lg
@@ -32,7 +32,7 @@ const LearnConnect = () => {
             bg="purple"
             title="Scholarships for Grabs!"
             paragraph="Learn, grow, and level up your tech skills with exclusive scholarship offers just for our amazing hangout crew!"
-            imgSrc="/bruno.webp"
+            imgSrc="/scholarship.jpg"
             lg
             buttonText="Apply for a Scholarship"
             handleClick={() => {
