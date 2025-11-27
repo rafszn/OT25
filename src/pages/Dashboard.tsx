@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
 type Ticket = {
@@ -117,6 +117,36 @@ export default function AdminDashboard() {
     }
   }
 
+  const filteredTickets = useMemo(() => {
+    if (!data?.tickets) return [];
+
+    // If search is empty: return all tickets
+    if (!ticketSearch || ticketSearch.trim() === "") {
+      return data.tickets;
+    }
+
+    const search = ticketSearch.toLowerCase();
+
+    return data.tickets.filter((ticket) =>
+      ticket.ticketCode?.toLowerCase().includes(search)
+    );
+  }, [data?.tickets, ticketSearch]);
+
+  const filteredReferrals = useMemo(() => {
+    if (!data?.referrals) return [];
+
+    // If search is empty: return all referrals
+    if (!referralSearch || referralSearch.trim() === "") {
+      return data.referrals;
+    }
+
+    const search = referralSearch.toLowerCase();
+
+    return data.referrals.filter((ref) =>
+      ref.referralCode?.toLowerCase().includes(search)
+    );
+  }, [data?.referrals, referralSearch]);
+
   if (!isAuthorized) {
     return (
       <p className="text-center p-6 text-gray-600">
@@ -136,18 +166,8 @@ export default function AdminDashboard() {
     return <p className="text-center p-6 text-gray-600">Loading...</p>;
   }
 
-  const filteredTickets = data.tickets.filter((ticket) =>
-    ticket.ticketCode
-      .toLowerCase()
-      .includes(`OTH-${ticketSearch}`.toLowerCase())
-  );
-
-  const filteredReferrals = data.referrals.filter((ref) =>
-    ref.referralCode.toLowerCase().includes(referralSearch.toLowerCase())
-  );
-
   return (
-    <div className="p-4 sm:p-6 max-w-5xl mx-auto">
+    <div className="p-4 sm:p-6 max-w-7xl mx-auto">
       <h1 className="text-2xl sm:text-3xl font-bold text-[#6A0DAD] mb-6 text-center sm:text-left">
         Admin Dashboard
       </h1>
@@ -203,7 +223,7 @@ export default function AdminDashboard() {
 
           {/* Desktop Table */}
           <div className="hidden sm:block overflow-x-auto shadow-md rounded-xl border border-gray-200">
-            <table className="w-full text-left text-sm">
+            <table className="w-full text-left text-sm whitespace-nowrap">
               <thead className="bg-[#6A0DAD] text-white">
                 <tr>
                   <th className="p-3">Date</th>
@@ -223,7 +243,7 @@ export default function AdminDashboard() {
                       className="hover:bg-gray-50 transition"
                     >
                       <td className="p-3">
-                        {formatDate(new Date(ticket.createdAt))}
+                        <div className="flex item-center text-[10px]">{formatDate(new Date(ticket.createdAt))}</div>
                       </td>
                       <td className="p-3">{ticket.ticketCode}</td>
                       <td className="p-3">{ticket.email}</td>
