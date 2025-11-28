@@ -248,7 +248,7 @@ const Header = () => {
             <Link to={"/"}>Home</Link>
             <Link to={"/ticket"}>Tickets</Link>
             <Link to={"/sponsor"}>Sponsor</Link>
-            <Link to={"/shop"}>Shop</Link>
+            {/* <Link to={"/shop"}>Shop</Link> */}
           </div>
 
           <div
@@ -285,12 +285,12 @@ const Header = () => {
                 >
                   Sponsor
                 </a>
-                <a
+                {/* <a
                   href="/shop"
                   className="text-[#6A0DAD] font-medium hover:underline"
                 >
                   Shop
-                </a>
+                </a> */}
               </motion.div>
             )}
           </AnimatePresence>
